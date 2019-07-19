@@ -1,5 +1,6 @@
-import 'package:course_flutter_dart/pages/character_listing_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'pages/character_listing_screen.dart';
 
 void main() => runApp(MyApp());
 

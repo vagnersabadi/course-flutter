@@ -1,6 +1,7 @@
 import 'package:course_flutter_dart/styleguide.dart';
 import 'package:course_flutter_dart/widgets/character_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:course_flutter_dart/models/character.dart';
 
 class CharacterListingScreen extends StatefulWidget {
   @override
@@ -8,6 +9,16 @@ class CharacterListingScreen extends StatefulWidget {
 }
 
 class _CharacterListingScreenState extends State<CharacterListingScreen> {
+  PageController _pageController;
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+        viewportFraction: 1.0, initialPage: currentPage, keepPage: false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +50,17 @@ class _CharacterListingScreenState extends State<CharacterListingScreen> {
                 ),
               ),
               Expanded(
-                child: CharacterWidget(),
+                child: PageView(
+                  physics: ClampingScrollPhysics(),
+                  controller: _pageController,
+                  children: <Widget>[
+                    for (var i = 0; i < characters.length; i++)
+                      CharacterWidget(
+                          character: characters[i],
+                          pageController: _pageController,
+                          currentPage: i)
+                  ],
+                ),
               ),
             ],
           ),

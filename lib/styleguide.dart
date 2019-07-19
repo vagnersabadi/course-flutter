@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-
   static const TextStyle display1 = TextStyle(
     fontFamily: 'WorkSans',
     color: Colors.black,
